@@ -1,0 +1,4 @@
+C:\Users\User\source\repos\InternetPhotoAlbum\BLL\bin\Debug\netcoreapp3.1\DAL.dll
+C:\Users\User\source\repos\InternetPhotoAlbum\BLL\obj\Debug\netcoreapp3.1\BLL.csprojAssemblyReference.cache
+C:\Users\User\source\repos\InternetPhotoAlbum\BLL\obj\Debug\netcoreapp3.1\BLL.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\InternetPhotoAlbum\BLL\obj\Debug\netcoreapp3.1\BLL.AssemblyInfo.cs

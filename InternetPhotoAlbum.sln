@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetPhotoAlbum", "InternetPhotoAlbum\InternetPhotoAlbum.csproj", "{6622939A-7BC3-4A47-80F2-6E0691B190B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetPhotoAlbum", "InternetPhotoAlbum\InternetPhotoAlbum.csproj", "{6622939A-7BC3-4A47-80F2-6E0691B190B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{0331982C-EEBA-41EE-BEB7-8A7D7F870A0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{0331982C-EEBA-41EE-BEB7-8A7D7F870A0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{27E7FC58-D9BE-4A00-B71A-7C6B3F08FFA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0331982C-EEBA-41EE-BEB7-8A7D7F870A0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0331982C-EEBA-41EE-BEB7-8A7D7F870A0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0331982C-EEBA-41EE-BEB7-8A7D7F870A0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27E7FC58-D9BE-4A00-B71A-7C6B3F08FFA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27E7FC58-D9BE-4A00-B71A-7C6B3F08FFA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27E7FC58-D9BE-4A00-B71A-7C6B3F08FFA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27E7FC58-D9BE-4A00-B71A-7C6B3F08FFA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
