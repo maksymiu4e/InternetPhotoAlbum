@@ -1,4 +1,5 @@
-﻿using DAL.Interfaces;
+﻿using DAL.Data;
+using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,20 +12,22 @@ namespace DAL.Repositories
 {
     public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity: class
     {
-        protected readonly DbContext _context;
-        public Repository(DbContext context)
+        protected readonly IPADbContext _context;
+        protected DbSet<TEntity> _entityDbSet;
+        public Repository(IPADbContext context)
         {
             _context = context;
+            _entityDbSet = context.Set<TEntity>();
         }
         public async Task AddAsync(TEntity entity)
         {
             await _context.Set<TEntity>().AddAsync(entity);
         }
 
-        public void Delete(TEntity entity)
-        {
-            _context.Set<TEntity>().Remove(entity);
-        }
+        //public void Delete(TEntity entity)
+        //{
+        //    _context.Set<TEntity>().Remove(entity);
+        //}
 
         public async Task DeleteByIdAsync(int id)
         {
@@ -32,19 +35,19 @@ namespace DAL.Repositories
             _context.Set<TEntity>().Remove(entity);
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> expression)
-        {
-            return _context.Set<TEntity>().Where(expression);
-        }
+        //public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> expression)
+        //{
+        //    return _context.Set<TEntity>().Where(expression);
+        //}
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await _context.Set<TEntity>().ToListAsync();
+            return await _entityDbSet.ToListAsync();
         }
 
         public async Task<TEntity> GetByIdAsync(int id)
         {
-            return await _context.Set<TEntity>().FindAsync(id);
+            return await _entityDbSet.FindAsync(id);
         }
 
         public void Update(TEntity entity)

@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Text;
 
-namespace DAL.Entities
-{
-    public class Role
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
-}
+//namespace DAL.Entities
+//{
+//    public class Role
+//    {
+//        public int Id { get; set; }
+//        public string Name { get; set; }
+//    }
+//}

@@ -7,6 +7,6 @@ namespace DAL.Interfaces
 {
     public interface IUserRepository : IRepository<User>
     {
-        IEnumerable<User> GetAllUsersByRoleId(int id);
+        //IEnumerable<User> GetAllUsersByRoleId(int id);
     }
 }

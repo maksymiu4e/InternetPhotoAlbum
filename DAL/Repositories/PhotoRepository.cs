@@ -24,10 +24,10 @@ namespace DAL.Repositories
             return IPADbContext.Photos.Where(x => x.CreationDate == date).ToList();
         }
 
-        public IEnumerable<Photo> GetAllPhotosByRoleId(int id)
-        {
-            return IPADbContext.Photos.Where(x => x.User.RoleId == id).ToList();
-        }
+        //public IEnumerable<Photo> GetAllPhotosByRoleId(int id)
+        //{
+        //    return IPADbContext.Photos.Where(x => x.User.RoleId == id).ToList();
+        //}
 
         public IEnumerable<Photo> GetAllPhotosByUserId(int id)
         {

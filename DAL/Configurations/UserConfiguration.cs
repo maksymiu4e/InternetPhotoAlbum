@@ -11,8 +11,19 @@ namespace DAL.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
+            builder.ToTable("Users");
             builder
                 .HasKey(m => m.Id);
+            builder
+                .Property(m => m.Id).ValueGeneratedOnAdd();
+            builder
+                .Property(m => m.FirstName);
+            builder
+                .Property(m => m.LastName);
+            //builder
+            //    .Property(m => m.RoleId).IsRequired();
+            builder
+                .HasMany(m => m.Photos).WithOne(x => x.User).HasForeignKey(x => x.UserId);
 
         }
     }

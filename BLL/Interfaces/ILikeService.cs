@@ -1,12 +1,14 @@
 ﻿using BLL.Models;
-using System;
+using DAL.Entities;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace BLL.Interfaces
 {
-    public interface ILikeService : IService<LikeModel>
+    public interface ILikeService 
     {
+        Task<IEnumerable<Like>> GetAllAsync();
+        Task<Like> GetByIdAsync(int id);
         IEnumerable<LikeModel> GetAllLikesByUserId(int id);
         IEnumerable<LikeModel> GetAllLikesByPhotoId(int id);
     }

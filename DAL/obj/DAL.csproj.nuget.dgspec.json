@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum\\DAL\\DAL.csproj": {}
+    "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\DAL\\DAL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum\\DAL\\DAL.csproj": {
+    "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum\\DAL\\DAL.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum\\DAL\\DAL.csproj",
+        "projectPath": "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\DAL\\DAL.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum\\DAL\\obj\\",
+        "outputPath": "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -47,6 +47,10 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[10.1.1, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.6, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
