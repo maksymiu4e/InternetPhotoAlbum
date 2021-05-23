@@ -21,7 +21,7 @@ namespace DAL.Repositories
         }
         public async Task AddAsync(TEntity entity)
         {
-            await _context.Set<TEntity>().AddAsync(entity);
+            await _entityDbSet.AddAsync(entity);
         }
 
         //public void Delete(TEntity entity)
@@ -32,7 +32,7 @@ namespace DAL.Repositories
         public async Task DeleteByIdAsync(int id)
         {
             var entity = await GetByIdAsync(id);
-            _context.Set<TEntity>().Remove(entity);
+            _entityDbSet.Remove(entity);
         }
 
         //public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> expression)
@@ -52,7 +52,7 @@ namespace DAL.Repositories
 
         public void Update(TEntity entity)
         {
-            _context.Set<TEntity>().FirstOrDefault(x => x == entity);
+            _entityDbSet.FirstOrDefault(x => x == entity);
         }
     }
 }

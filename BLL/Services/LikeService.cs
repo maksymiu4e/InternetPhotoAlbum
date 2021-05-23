@@ -1,4 +1,5 @@
-﻿using BLL.Interfaces;
+﻿using AutoMapper;
+using BLL.Interfaces;
 using BLL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
@@ -8,32 +9,39 @@ using System.Threading.Tasks;
 
 namespace BLL.Services
 {
-    public class LikeService : ILikeService
+    public class LikeService : Service<LikeModel, Like>, ILikeService
     {
         private readonly ILikeRepository _likeRepository;
+        private readonly IMapper _mapper;
 
-        public LikeService(ILikeRepository likeRepository)
+        //public LikeService(ILikeRepository likeRepository)
+        //{
+        //    _likeRepository = likeRepository ?? throw new ArgumentNullException(nameof(likeRepository));
+        //}
+        public LikeService(IUnitOfWork unitOfWork) : base(unitOfWork, unitOfWork.LikeRepository)
         {
-            _likeRepository = likeRepository ?? throw new ArgumentNullException(nameof(likeRepository));
+            _likeRepository = _unitOfWork.LikeRepository;
+            _mapper = new Mapper(new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Like, LikeModel>().ReverseMap();
+            }));
         }
-        public async Task<IEnumerable<Like>> GetAllAsync()
-        {
-            return await _likeRepository.GetAllAsync();
-        }
+
+        //public async Task<IEnumerable<LikeModel>> GetAllAsync()
+        //{
+        //    return await _likeRepository.GetAllAsync();
+        //}
 
         public IEnumerable<LikeModel> GetAllLikesByPhotoId(int id)
         {
-            throw new NotImplementedException();
+            var photoLikes = _likeRepository.GetAllLikesByPhotoId(id);
+            return _mapper.Map<IEnumerable<Like>, IEnumerable<LikeModel>>(photoLikes);
         }
 
         public IEnumerable<LikeModel> GetAllLikesByUserId(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<Like> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
+            var userLikes = _likeRepository.GetAllLikesByUserId(id);
+            return _mapper.Map<IEnumerable<Like>, IEnumerable<LikeModel>>(userLikes);
         }
     }
 }

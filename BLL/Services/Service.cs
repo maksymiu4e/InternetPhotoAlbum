@@ -2,32 +2,47 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using BLL.Interfaces;
 using DAL.Interfaces;
 
 namespace BLL.Services
 {
-    public abstract class Service<TModel> : IService<TModel> where TModel : class
+    public abstract class Service<TModel, TEntity> : IService<TModel> 
+        where TModel : class
+        where TEntity : class
     {
         protected readonly IUnitOfWork _unitOfWork;
-        public Task DeleteByIdAsync(int modelId)
+        private readonly IRepository<TEntity> _repository;
+        private readonly IMapper _mapper;
+        public Service(IUnitOfWork unitOfWork, IRepository<TEntity> repository)
         {
-            throw new NotImplementedException();
+            _unitOfWork = unitOfWork;
+            _repository = repository;
+            _mapper = new Mapper(new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<TEntity, TModel>().ReverseMap();
+            }));
+
+        }
+        public async Task DeleteByIdAsync(int modelId)
+        {
+            await _repository.DeleteByIdAsync(modelId);
         }
 
-        public Task<IEnumerable<TModel>> GetAllAsync()
+        public async Task<IEnumerable<TModel>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return _mapper.Map<IEnumerable<TEntity>, IEnumerable<TModel>>(await _repository.GetAllAsync());
         }
 
-        public Task<TModel> GetByIdAsync(int id)
+        public async Task<TModel> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return _mapper.Map<TEntity, TModel>(await _repository.GetByIdAsync(id));
         }
 
-        public Task UpdateAsync(TModel model)
+        public void Update(TModel model)
         {
-            throw new NotImplementedException();
+             _repository.Update(_mapper.Map<TModel, TEntity>(model));
         }
     }
 }

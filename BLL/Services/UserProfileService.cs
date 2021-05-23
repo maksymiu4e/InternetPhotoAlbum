@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Text;
 
-namespace BLL.Services
-{
-    class UserProfileService
-    {
-    }
-}
+//namespace BLL.Services
+//{
+//    class UserProfileService
+//    {
+//    }
+//}

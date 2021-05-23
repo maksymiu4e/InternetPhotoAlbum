@@ -7,6 +7,6 @@ namespace BLL.Interfaces
 {
     public interface IUserService : IService<UserModel>
     {
-        IEnumerable<UserModel> GetAllUsersByRoleId(int id);
+        //IEnumerable<UserModel> GetAllUsersByRoleId(int id);
     }
 }
