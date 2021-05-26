@@ -1,5 +1,4 @@
 ﻿using BLL.Models;
-using DAL.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,7 +8,7 @@ namespace BLL.Interfaces
     {
         //Task<IEnumerable<Like>> GetAllAsync();
         //Task<Like> GetByIdAsync(int id);
-        IEnumerable<LikeModel> GetAllLikesByUserId(int id);
-        IEnumerable<LikeModel> GetAllLikesByPhotoId(int id);
+        Task<IEnumerable<LikeModel>> GetAllLikesByUserIdAsync(int id);
+        Task<IEnumerable<LikeModel>> GetAllLikesByPhotoIdAsync(int id);
     }
 }

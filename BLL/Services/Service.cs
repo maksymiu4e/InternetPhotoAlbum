@@ -8,7 +8,7 @@ using DAL.Interfaces;
 
 namespace BLL.Services
 {
-    public abstract class Service<TModel, TEntity> : IService<TModel> 
+    public abstract class Service<TModel, TEntity> : IService<TModel>
         where TModel : class
         where TEntity : class
     {
@@ -19,6 +19,7 @@ namespace BLL.Services
         {
             _unitOfWork = unitOfWork;
             _repository = repository;
+
             _mapper = new Mapper(new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<TEntity, TModel>().ReverseMap();
@@ -37,12 +38,18 @@ namespace BLL.Services
 
         public async Task<TModel> GetByIdAsync(int id)
         {
-            return _mapper.Map<TEntity, TModel>(await _repository.GetByIdAsync(id));
+            var entity = await _repository.GetByIdAsync(id);
+            if (entity is null)
+            {
+                return null;
+            }
+            return _mapper.Map<TModel>(entity);
         }
 
-        public void Update(TModel model)
+        public async Task UpdateAsync(TModel model)
         {
-             _repository.Update(_mapper.Map<TModel, TEntity>(model));
+            var entity = _mapper.Map<TEntity>(model);
+            await _repository.UpdateAsync(entity);
         }
     }
 }

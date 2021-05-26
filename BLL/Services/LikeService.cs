@@ -3,7 +3,6 @@ using BLL.Interfaces;
 using BLL.Models;
 using DAL.Entities;
 using DAL.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -21,6 +20,7 @@ namespace BLL.Services
         public LikeService(IUnitOfWork unitOfWork) : base(unitOfWork, unitOfWork.LikeRepository)
         {
             _likeRepository = _unitOfWork.LikeRepository;
+            //_mapper = mapper;
             _mapper = new Mapper(new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Like, LikeModel>().ReverseMap();
@@ -32,16 +32,16 @@ namespace BLL.Services
         //    return await _likeRepository.GetAllAsync();
         //}
 
-        public IEnumerable<LikeModel> GetAllLikesByPhotoId(int id)
+        public async Task<IEnumerable<LikeModel>> GetAllLikesByPhotoIdAsync(int id)
         {
             var photoLikes = _likeRepository.GetAllLikesByPhotoId(id);
             return _mapper.Map<IEnumerable<Like>, IEnumerable<LikeModel>>(photoLikes);
         }
 
-        public IEnumerable<LikeModel> GetAllLikesByUserId(int id)
+        public async Task<IEnumerable<LikeModel>> GetAllLikesByUserIdAsync(int id)
         {
             var userLikes = _likeRepository.GetAllLikesByUserId(id);
-            return _mapper.Map<IEnumerable<Like>, IEnumerable<LikeModel>>(userLikes);
+            return  _mapper.Map<IEnumerable<Like>, IEnumerable<LikeModel>>(userLikes);
         }
     }
 }

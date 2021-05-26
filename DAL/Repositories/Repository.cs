@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity: class
+    public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         protected readonly IPADbContext _context;
         protected DbSet<TEntity> _entityDbSet;
-        public Repository(IPADbContext context)
+        protected Repository(IPADbContext context)
         {
             _context = context;
             _entityDbSet = context.Set<TEntity>();
@@ -33,6 +33,7 @@ namespace DAL.Repositories
         {
             var entity = await GetByIdAsync(id);
             _entityDbSet.Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
         //public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> expression)
@@ -50,9 +51,11 @@ namespace DAL.Repositories
             return await _entityDbSet.FindAsync(id);
         }
 
-        public void Update(TEntity entity)
+        public async Task<TEntity> UpdateAsync(TEntity entity)
         {
-            _entityDbSet.FirstOrDefault(x => x == entity);
+            _context.Entry(entity).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return entity;
         }
     }
 }

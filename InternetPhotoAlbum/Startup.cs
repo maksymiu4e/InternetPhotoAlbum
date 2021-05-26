@@ -1,3 +1,5 @@
+using AutoMapper;
+using BLL;
 using BLL.Interfaces;
 using BLL.Services;
 using DAL.Data;
@@ -30,6 +32,10 @@ namespace InternetPhotoAlbum
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ILikeRepository, LikeRepository>();
             services.AddScoped<ILikeService, LikeService>();
+
+            var mapperConfig = new MapperConfiguration(cfg =>
+                cfg.AddProfile(new AutomapperProfile()));
+            IMapper mapper = mapperConfig.CreateMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

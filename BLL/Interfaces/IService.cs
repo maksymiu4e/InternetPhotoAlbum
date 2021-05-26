@@ -9,7 +9,7 @@ namespace BLL.Interfaces
     {
         Task<IEnumerable<TModel>> GetAllAsync();
         Task<TModel> GetByIdAsync(int id);
-        void Update (TModel model);
+        Task UpdateAsync (TModel model);
         Task DeleteByIdAsync(int modelId);
     }
 }

@@ -14,14 +14,14 @@ namespace DAL.Repositories
         public PhotoRepository(IPADbContext context) : base(context)
         {
         }
-        private IPADbContext IPADbContext
-        {
-            get { return _context as IPADbContext; }
-        }
+        //private IPADbContext IPADbContext
+        //{
+        //    get { return _context as IPADbContext; }
+        //}
 
         public IEnumerable<Photo> GetAllPhotosByCreationDate(DateTime date)
         {
-            return IPADbContext.Photos.Where(x => x.CreationDate == date).ToList();
+            return _context.Photos.Where(x => x.CreationDate == date).ToList();
         }
 
         //public IEnumerable<Photo> GetAllPhotosByRoleId(int id)
@@ -31,7 +31,7 @@ namespace DAL.Repositories
 
         public IEnumerable<Photo> GetAllPhotosByUserId(int id)
         {
-            return IPADbContext.Photos.Where(x => x.UserId == id).ToList();
+            return _context.Photos.Where(x => x.UserId == id).ToList();
         }
     }
 }

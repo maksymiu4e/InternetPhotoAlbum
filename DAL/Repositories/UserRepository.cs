@@ -10,10 +10,10 @@ namespace DAL.Repositories
         {
         }
 
-        private IPADbContext IPADbContext 
-        {
-            get { return _context as IPADbContext; }
-        }
+        //private IPADbContext IPADbContext 
+        //{
+        //    get { return _context as IPADbContext; }
+        //}
 
         //public IEnumerable<User> GetAllUsersByRoleId(int id)
         //{
