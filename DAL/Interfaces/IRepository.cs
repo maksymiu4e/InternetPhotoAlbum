@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DAL.Interfaces
@@ -14,5 +12,6 @@ namespace DAL.Interfaces
         Task<TEntity> UpdateAsync(TEntity entity);
         //void Delete(TEntity entity);
         Task DeleteByIdAsync(int id);
+        Task<TEntity> CreateAsync(TEntity entity);
     }
 }

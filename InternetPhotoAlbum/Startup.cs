@@ -32,6 +32,10 @@ namespace InternetPhotoAlbum
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ILikeRepository, LikeRepository>();
             services.AddScoped<ILikeService, LikeService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IPhotoRepository, PhotoRepository>();
+            services.AddScoped<IPhotoService, PhotoService>();
 
             var mapperConfig = new MapperConfiguration(cfg =>
                 cfg.AddProfile(new AutomapperProfile()));

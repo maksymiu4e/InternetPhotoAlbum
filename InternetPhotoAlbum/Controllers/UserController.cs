@@ -48,7 +48,7 @@ namespace InternetPhotoAlbum.Controllers
             return Ok();
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("[action]")]
         public async Task<IActionResult> UpdateAsync(UserModel model)
         {

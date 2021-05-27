@@ -21,5 +21,6 @@ namespace BLL.Services
                 cfg.CreateMap<User, UserModel>().ReverseMap();
             }));
         }
+
     }
 }

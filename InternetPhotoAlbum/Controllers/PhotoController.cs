@@ -3,7 +3,7 @@ using BLL.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace InternetPhotoAlbum.Controllers
@@ -13,6 +13,7 @@ namespace InternetPhotoAlbum.Controllers
     public class PhotoController : ControllerBase
     {
         private readonly IPhotoService _photoService;
+        private readonly IUserService _userService;
 
         public PhotoController(IPhotoService photoService)
         {
@@ -48,11 +49,18 @@ namespace InternetPhotoAlbum.Controllers
             return Ok();
         }
 
-        [HttpPost]
-        [Route("[action]")]
-        public async Task<IActionResult> UpdateAsync(PhotoModel model)
+        [HttpPatch]
+        //[Route("[action]")]
+        public async Task<IActionResult> UpdateAsync(UpdatePhotoRequest model)
         {
-            await _photoService.UpdateAsync(model);
+            var photoToChange = await _photoService.GetByIdAsync(model.Id);
+            if (photoToChange is null)
+            {
+                return NotFound();
+            }
+
+            photoToChange.Title = model.Title;
+            await _photoService.UpdateAsync(photoToChange);
             return Ok(model);
         }
 
@@ -70,6 +78,41 @@ namespace InternetPhotoAlbum.Controllers
         {
             var result = _photoService.GetAllPhotosByUserId(id);
             return Ok(result);
+        }
+
+        //[HttpPost]
+        //[Route("[action]")]
+        //public async Task<IActionResult> CreateAsync(PhotoModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest();
+        //    }
+
+        //    await _photoService.CreateAsync(model);
+        //    return Ok(model);
+        //}
+
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> CreateAsync(PhotoModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            string login = HttpContext.User.Identity.Name;
+            var file = Request.Form.Files[0];
+            
+
+            await _photoService.CreateAsync(new PhotoModel
+            {
+                UserId = model.UserId
+            });
+
+
+            return Ok(model);
         }
     }
 }

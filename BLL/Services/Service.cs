@@ -51,5 +51,12 @@ namespace BLL.Services
             var entity = _mapper.Map<TEntity>(model);
             await _repository.UpdateAsync(entity);
         }
+
+        public async Task CreateAsync(TModel model)
+        {
+            var entity = _mapper.Map<TEntity>(model);
+            await _repository.CreateAsync(entity);
+            await _unitOfWork.SaveAsync();
+        }
     }
 }

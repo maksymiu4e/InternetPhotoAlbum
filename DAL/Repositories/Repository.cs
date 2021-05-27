@@ -1,11 +1,7 @@
 ﻿using DAL.Data;
 using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DAL.Repositories
@@ -48,12 +44,24 @@ namespace DAL.Repositories
 
         public async Task<TEntity> GetByIdAsync(int id)
         {
-            return await _entityDbSet.FindAsync(id);
+            var entity = await _entityDbSet.FindAsync(id);
+            if (entity != null)
+            {
+                _context.Entry(entity).State = EntityState.Detached;
+            }
+            return entity;
         }
 
         public async Task<TEntity> UpdateAsync(TEntity entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return entity;
+        }
+
+        public async Task<TEntity> CreateAsync(TEntity entity)
+        {
+            await _entityDbSet.AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity;
         }

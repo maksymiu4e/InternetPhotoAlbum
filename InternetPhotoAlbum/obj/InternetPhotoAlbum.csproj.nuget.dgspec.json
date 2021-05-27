@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\InternetPhotoAlbum\\InternetPhotoAlbum.csproj": {}
+    "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum2\\InternetPhotoAlbum\\InternetPhotoAlbum.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\BLL\\BLL.csproj": {
+    "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum2\\BLL\\BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\BLL\\BLL.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum2\\BLL\\BLL.csproj",
         "projectName": "BLL",
-        "projectPath": "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\BLL\\BLL.csproj",
+        "projectPath": "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum2\\BLL\\BLL.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\BLL\\obj\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum2\\BLL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -32,8 +32,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\DAL\\DAL.csproj"
+              "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum2\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum2\\DAL\\DAL.csproj"
               }
             }
           }
@@ -72,14 +72,14 @@
         }
       }
     },
-    "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\DAL\\DAL.csproj": {
+    "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum2\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\DAL\\DAL.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum2\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\DAL\\DAL.csproj",
+        "projectPath": "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum2\\DAL\\DAL.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\DAL\\obj\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum2\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -160,14 +160,14 @@
         }
       }
     },
-    "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\InternetPhotoAlbum\\InternetPhotoAlbum.csproj": {
+    "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum2\\InternetPhotoAlbum\\InternetPhotoAlbum.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\InternetPhotoAlbum\\InternetPhotoAlbum.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum2\\InternetPhotoAlbum\\InternetPhotoAlbum.csproj",
         "projectName": "InternetPhotoAlbum",
-        "projectPath": "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\InternetPhotoAlbum\\InternetPhotoAlbum.csproj",
+        "projectPath": "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum2\\InternetPhotoAlbum\\InternetPhotoAlbum.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\InternetPhotoAlbum\\obj\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum2\\InternetPhotoAlbum\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -188,8 +188,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\BLL\\BLL.csproj": {
-                "projectPath": "C:\\Users\\User\\Source\\Repos\\InternetPhotoAlbum2\\BLL\\BLL.csproj"
+              "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum2\\BLL\\BLL.csproj": {
+                "projectPath": "C:\\Users\\User\\source\\repos\\InternetPhotoAlbum2\\BLL\\BLL.csproj"
               }
             }
           }
