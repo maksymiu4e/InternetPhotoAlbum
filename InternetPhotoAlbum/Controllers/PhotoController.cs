@@ -1,10 +1,12 @@
 ﻿using BLL.Interfaces;
 using BLL.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using static BLL.Shared.Enums;
 
 namespace InternetPhotoAlbum.Controllers
 {
@@ -20,6 +22,7 @@ namespace InternetPhotoAlbum.Controllers
             _photoService = photoService ?? throw new ArgumentNullException(nameof(photoService));
         }
 
+       // [Authorize(Roles = nameof(UserRole.Admin))]
         [HttpGet]
         public async Task<ActionResult<List<PhotoModel>>> GetAll()
         {

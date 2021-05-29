@@ -1,0 +1,4 @@
+{
+"Password": "Password1!",
+"Email":"admin@mail.com"
+}

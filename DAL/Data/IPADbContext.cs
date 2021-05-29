@@ -31,6 +31,8 @@ namespace DAL.Data
             modelBuilder.ApplyConfiguration(new UserConfiguration());
 
             modelBuilder.ApplyConfiguration(new LikeConfiguration());
+
+            modelBuilder.Seed();
         }
     }
 }

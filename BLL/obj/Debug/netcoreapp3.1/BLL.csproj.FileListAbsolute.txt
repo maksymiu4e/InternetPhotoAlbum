@@ -6,7 +6,9 @@ C:\Users\User\source\repos\InternetPhotoAlbum2\BLL\bin\Debug\netcoreapp3.1\BLL.d
 C:\Users\User\source\repos\InternetPhotoAlbum2\BLL\bin\Debug\netcoreapp3.1\BLL.dll
 C:\Users\User\source\repos\InternetPhotoAlbum2\BLL\bin\Debug\netcoreapp3.1\BLL.pdb
 C:\Users\User\source\repos\InternetPhotoAlbum2\BLL\bin\Debug\netcoreapp3.1\DAL.dll
+C:\Users\User\source\repos\InternetPhotoAlbum2\BLL\bin\Debug\netcoreapp3.1\Shared.dll
 C:\Users\User\source\repos\InternetPhotoAlbum2\BLL\bin\Debug\netcoreapp3.1\DAL.pdb
+C:\Users\User\source\repos\InternetPhotoAlbum2\BLL\bin\Debug\netcoreapp3.1\Shared.pdb
 C:\Users\User\source\repos\InternetPhotoAlbum2\BLL\obj\Debug\netcoreapp3.1\BLL.csprojAssemblyReference.cache
 C:\Users\User\source\repos\InternetPhotoAlbum2\BLL\obj\Debug\netcoreapp3.1\BLL.AssemblyInfoInputs.cache
 C:\Users\User\source\repos\InternetPhotoAlbum2\BLL\obj\Debug\netcoreapp3.1\BLL.AssemblyInfo.cs

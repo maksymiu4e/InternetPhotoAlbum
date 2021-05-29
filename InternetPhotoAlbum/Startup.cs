@@ -1,7 +1,6 @@
 using AutoMapper;
 using BLL;
 using BLL.Interfaces;
-using BLL.Models;
 using BLL.Services;
 using DAL.Data;
 using DAL.Entities;
@@ -65,6 +64,17 @@ namespace InternetPhotoAlbum
             services.AddAuthentication()
                .AddIdentityServerJwt();
 
+            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //    .AddJwtBearer(options =>
+            //    {
+            //        options.TokenValidationParameters = new TokenValidationParameters
+            //        {
+            //            ValidIssuer = "https://localhost:44328",
+            //            ValidAudience = "https://localhost:44328",
+            //            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SecretKey")),
+            //        };
+            //    });
+
             services.AddRazorPages();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -74,7 +84,7 @@ namespace InternetPhotoAlbum
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<User> userManager)
         {
 
             if (env.IsDevelopment())
@@ -98,16 +108,18 @@ namespace InternetPhotoAlbum
 
             app.UseRouting();
 
-            //app.UseAuthentication();
             //app.UseIdentityServer();
+            //app.UseAuthentication();
             //app.UseAuthorization();
+
+            DbUserInitialization.InitializeAdmin(userManager).Wait();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
-                    //endpoints.MapRazorPages();
+                //endpoints.MapRazorPages();
             });
 
             app.UseSpa(spa =>
