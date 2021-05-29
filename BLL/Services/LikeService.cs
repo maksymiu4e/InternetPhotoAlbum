@@ -17,14 +17,14 @@ namespace BLL.Services
         //{
         //    _likeRepository = likeRepository ?? throw new ArgumentNullException(nameof(likeRepository));
         //}
-        public LikeService(IUnitOfWork unitOfWork) : base(unitOfWork, unitOfWork.LikeRepository)
+        public LikeService(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, unitOfWork.LikeRepository, mapper)
         {
             _likeRepository = _unitOfWork.LikeRepository;
-            //_mapper = mapper;
-            _mapper = new Mapper(new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<Like, LikeModel>().ReverseMap();
-            }));
+            _mapper = mapper;
+            //_mapper = new Mapper(new MapperConfiguration(cfg =>
+            //{
+            //    cfg.CreateMap<Like, LikeModel>().ReverseMap();
+            //}));
         }
 
         //public async Task<IEnumerable<LikeModel>> GetAllAsync()

@@ -14,13 +14,15 @@ namespace BLL.Services
         private readonly IPhotoRepository _photoRepository;
         private readonly IMapper _mapper;
 
-        public PhotoService(IUnitOfWork unitOfWork) : base(unitOfWork, unitOfWork.PhotoRepository)
+        public PhotoService(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, unitOfWork.PhotoRepository, mapper)
         {
             _photoRepository = unitOfWork.PhotoRepository;
-            _mapper = new Mapper(new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<Photo, PhotoModel>().ReverseMap();
-            }));
+            _mapper = mapper;
+
+            //_mapper = new Mapper(new MapperConfiguration(cfg =>
+            //{
+            //    cfg.CreateMap<Photo, PhotoModel>().ReverseMap();
+            //}));
         }
 
         public IEnumerable<PhotoModel> GetAllPhotosByCreationDate(DateTime date)
