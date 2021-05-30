@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using static BLL.Shared.Enums;
 
 namespace InternetPhotoAlbum
 {
@@ -81,6 +82,12 @@ namespace InternetPhotoAlbum
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("RequireAdministratorRole",
+            //        policy => policy.RequireRole(UserRole.Admin.ToString()));
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -109,8 +116,8 @@ namespace InternetPhotoAlbum
             app.UseRouting();
 
             //app.UseIdentityServer();
-            //app.UseAuthentication();
-            //app.UseAuthorization();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             DbUserInitialization.InitializeAdmin(userManager).Wait();
 

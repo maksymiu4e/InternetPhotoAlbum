@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using BLL.Models;
 using DAL.Entities;
-
+using System.IO;
+using static System.Net.WebRequestMethods;
 
 namespace BLL
 {
@@ -12,6 +13,23 @@ namespace BLL
             CreateMap<Like, LikeModel>().ReverseMap();
 
             CreateMap<Photo, PhotoModel>().ReverseMap();
+            //CreateMap<Photo, PhotoModelResponce>().ReverseMap();
+
+            //CreateMap<PhotoModelResponce, byte[]>()
+            //    .ConstructUsing(fb =>
+            //    {
+            //        MemoryStream target = new MemoryStream();
+            //        fb.Content.CopyTo(target);
+            //        return target.ToArray();
+            //    });
+            //CreateMap<PhotoModel, Photo>()
+            //    .ForMember(x => x.Content, opt => opt.MapFrom(x=>x).ConvertUsing(fb =>
+            //    {
+            //        MemoryStream target = new MemoryStream();
+            //        fb.Content.CopyTo(target);
+            //        return target.ToArray();
+            //    }))
+            //.ReverseMap();
 
             //CreateMap<Role, RoleModel>().ReverseMap();
             //CreateMap<UserProfile, UserProfileModel>().ReverseMap();

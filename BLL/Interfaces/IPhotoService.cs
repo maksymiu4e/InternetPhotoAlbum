@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BLL.Interfaces
 {
@@ -10,5 +11,12 @@ namespace BLL.Interfaces
         IEnumerable<PhotoModel> GetAllPhotosByUserId(int id);
         //IEnumerable<PhotoModel> GetAllPhotosByRoleId(int id);
         IEnumerable<PhotoModel> GetAllPhotosByCreationDate(DateTime date);
+        
+        /// <summary>
+        /// Posts new photo.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>Message about status</returns>
+        Task<string> PostNewPhoto(PhotoModel model);
     }
 }

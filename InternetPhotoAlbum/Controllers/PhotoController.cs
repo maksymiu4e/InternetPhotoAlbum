@@ -1,29 +1,31 @@
 ﻿using BLL.Interfaces;
 using BLL.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using static BLL.Shared.Enums;
 
 namespace InternetPhotoAlbum.Controllers
 {
+    //[AllowAnonymous]
+    //[Authorize]
     [ApiController]
     [Route("[controller]")]
     public class PhotoController : ControllerBase
     {
         private readonly IPhotoService _photoService;
-        private readonly IUserService _userService;
 
         public PhotoController(IPhotoService photoService)
         {
             _photoService = photoService ?? throw new ArgumentNullException(nameof(photoService));
         }
 
-       // [Authorize(Roles = nameof(UserRole.Admin))]
         [HttpGet]
+        //[Authorize(Roles = nameof(UserRole.Admin))]
+        //[Authorize(Policy = "RequireAdministratorRole")]
         public async Task<ActionResult<List<PhotoModel>>> GetAll()
         {
             var result = await _photoService.GetAllAsync();
@@ -32,8 +34,10 @@ namespace InternetPhotoAlbum.Controllers
 
         [HttpGet]
         [Route("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<List<PhotoModel>>> GetByIdAsync(int id)
         {
+            var foo = HttpContext.User;
             var result = await _photoService.GetByIdAsync(id);
             return Ok(result);
         }
@@ -62,7 +66,7 @@ namespace InternetPhotoAlbum.Controllers
                 return NotFound();
             }
 
-            photoToChange.Title = model.Title;
+            //photoToChange.Title = model.Title;
             await _photoService.UpdateAsync(photoToChange);
             return Ok(model);
         }
@@ -74,6 +78,7 @@ namespace InternetPhotoAlbum.Controllers
             var result = _photoService.GetAllPhotosByCreationDate(date);
             return Ok(result);
         }
+
 
         [HttpGet]
         [Route("[action]/{id}")]
@@ -98,24 +103,32 @@ namespace InternetPhotoAlbum.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        public async Task<IActionResult> CreateAsync(PhotoModel model)
+        public async Task<IActionResult> Create([FromForm] PhotoModel model, IFormFile img)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            string login = HttpContext.User.Identity.Name;
-            var file = Request.Form.Files[0];
-            
-
-            await _photoService.CreateAsync(new PhotoModel
+            using (Stream stream = img.OpenReadStream())
+            using (MemoryStream memmoryStream = new MemoryStream())
             {
-                UserId = model.UserId
-            });
+                img.CopyTo(memmoryStream);
+                model.Content = memmoryStream.ToArray();
+            }
+
+            try
+            {
+                await _photoService.CreateAsync(model);
+            }
+            catch (Exception)
+            {
+
+                return Ok("Uploading failed");
+            }
 
 
-            return Ok(model);
+            return Ok("Success uploaded");
         }
     }
 }
