@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BLL.Interfaces;
 using BLL.Models;
-using InternetPhotoAlbum.PLModels;
+using BLL.Models.User;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -18,18 +18,18 @@ namespace InternetPhotoAlbum.Controllers
     {
         private readonly IUserService _userService;
         //private readonly UserManager<UserModel> _userManager;
-        private readonly IMapper _mapper;
+        //private readonly IMapper _mapper;
         //private readonly UserMembershipProvider _userMembershipProvider;
 
 
         public UserController(IUserService userService/*, UserManager<UserModel> userManager*/)
         {
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
-            _mapper = new Mapper(new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<UserModel, UserSignUpModel>()
-                        .ForMember(u => u.Email, opt => opt.MapFrom(ur => ur.Email)).ReverseMap();
-            }));
+            //_mapper = new Mapper(new MapperConfiguration(cfg =>
+            //{
+            //    cfg.CreateMap<UserModel, UserSignUpModel>()
+            //            .ForMember(u => u.Email, opt => opt.MapFrom(ur => ur.Email)).ReverseMap();
+            //}));
             //_userManager = userManager;
         }
 

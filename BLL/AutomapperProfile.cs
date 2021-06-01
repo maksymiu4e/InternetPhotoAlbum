@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using BLL.Models;
+using BLL.Models.Photo;
+using BLL.Models.User;
 using DAL.Entities;
 using System.IO;
 using static System.Net.WebRequestMethods;
@@ -40,10 +42,6 @@ namespace BLL
             CreateMap<User, SignUpModel>().ReverseMap();
             CreateMap<User, SignInModel>().ReverseMap();
 
-            //CreateMap<UserSignUpModel, User>()
-            //    .ForMember(u => u.UserName, opt => opt.MapFrom(ur => ur.Email));
-            //cfg.CreateMap<UserSignUpModel, UserModel>()
-            //.ForMember(u => u.Email, opt => opt.MapFrom(ur => ur.Email));
         }
     }
 }

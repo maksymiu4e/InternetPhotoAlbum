@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BLL.Interfaces;
-using BLL.Models;
+using BLL.Models.Photo;
 using DAL.Entities;
 using DAL.Interfaces;
 using Microsoft.AspNetCore.Http;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL.Models.Photo;
+using System;
 using System.Collections.Generic;
 using System.Text;
 

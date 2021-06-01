@@ -1,8 +1,10 @@
 ﻿using DAL.Data;
 using DAL.Entities;
 using DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
@@ -25,6 +27,11 @@ namespace DAL.Repositories
         public IEnumerable<Like> GetAllLikesByUserId(int id)
         {
             return _context.Likes.Where(x => x.Photo.UserId == id).ToList();
+        }
+
+        public async Task<Like> GetByIdWithDetailsAsync(int id)
+        {
+            return await _context.Likes.Where(x => x.Id == id).Include(p => p.Photo).FirstOrDefaultAsync();
         }
     }
 }

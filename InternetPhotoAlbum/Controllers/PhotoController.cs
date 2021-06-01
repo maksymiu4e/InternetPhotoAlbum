@@ -1,5 +1,5 @@
 ﻿using BLL.Interfaces;
-using BLL.Models;
+using BLL.Models.Photo;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -37,7 +37,6 @@ namespace InternetPhotoAlbum.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<List<PhotoModel>>> GetByIdAsync(int id)
         {
-            var foo = HttpContext.User;
             var result = await _photoService.GetByIdAsync(id);
             return Ok(result);
         }

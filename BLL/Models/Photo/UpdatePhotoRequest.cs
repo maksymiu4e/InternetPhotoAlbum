@@ -1,4 +1,4 @@
-﻿namespace BLL.Models
+﻿namespace BLL.Models.Photo
 {
     public class UpdatePhotoRequest
     {

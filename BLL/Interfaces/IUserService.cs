@@ -1,4 +1,5 @@
-﻿using BLL.Models;
+﻿//using BLL.Models;
+using BLL.Models.User;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;

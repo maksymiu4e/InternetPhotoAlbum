@@ -3,6 +3,7 @@ using BLL.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace InternetPhotoAlbum.Controllers
@@ -12,10 +13,12 @@ namespace InternetPhotoAlbum.Controllers
     public class LikeController : ControllerBase
     {
         private readonly ILikeService _likeService;
+        private readonly IPhotoService _photoService;
 
-        public LikeController(ILikeService likeService)
+        public LikeController(ILikeService likeService, IPhotoService photoService)
         {
             _likeService = likeService ?? throw new ArgumentNullException(nameof(likeService));
+            _photoService = photoService ?? throw new ArgumentNullException(nameof(photoService));
         }
 
         [HttpGet]
@@ -68,6 +71,23 @@ namespace InternetPhotoAlbum.Controllers
         public async Task<IActionResult> UpdateAsync(LikeModel model)
         {
             await _likeService.UpdateAsync(model);
+            return Ok(model);
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> CreateAsync(LikeModel model)
+        {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
+
+            var photoM = await _photoService.GetByIdAsync(model.PhotoId);
+            
+            var uId = int.Parse(userId);
+
+            var x = model.Photo.Title;
+
+            await _likeService.CreateAsync(model);
             return Ok(model);
         }
     }
