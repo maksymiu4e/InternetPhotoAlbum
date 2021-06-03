@@ -15,6 +15,7 @@ namespace BLL
             CreateMap<Like, LikeModel>().ReverseMap();
 
             CreateMap<Photo, PhotoModel>().ReverseMap();
+
             //CreateMap<Photo, PhotoModelResponce>().ReverseMap();
 
             //CreateMap<PhotoModelResponce, byte[]>()

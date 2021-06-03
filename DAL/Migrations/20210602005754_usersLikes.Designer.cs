@@ -4,14 +4,16 @@ using DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAL.Migrations
 {
     [DbContext(typeof(IPADbContext))]
-    partial class IPADbContextModelSnapshot : ModelSnapshot
+    [Migration("20210602005754_usersLikes")]
+    partial class usersLikes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -146,7 +148,7 @@ namespace DAL.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "acf33bae-ad73-4899-977a-538fa7ee681d",
+                            ConcurrencyStamp = "88ab531f-0c96-4768-afd2-270f47ffc20e",
                             Email = "johnDoe@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "John",
@@ -159,7 +161,7 @@ namespace DAL.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2b339e58-4ab8-4fcf-bb22-50c9f746257a",
+                            ConcurrencyStamp = "410a4e68-a2cf-4733-b4f5-cd3077ebbecc",
                             Email = "STlee@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Steve",
@@ -172,7 +174,7 @@ namespace DAL.Migrations
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8991a079-43b2-4eb8-b435-60531a91811d",
+                            ConcurrencyStamp = "1f6d3fa2-8e01-4e0f-970a-116bf5ed9c57",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
@@ -215,21 +217,21 @@ namespace DAL.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "e8cc5bb3-bc78-4909-9a6c-e8956d9dd06a",
+                            ConcurrencyStamp = "b459dbb5-16bc-44b2-a8ab-3dd83a425866",
                             Name = "Guest",
                             NormalizedName = "GUEST"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "44e2acb7-5f96-4adf-a42d-a524f21b2699",
+                            ConcurrencyStamp = "b58404b1-201b-4b69-b7f2-feadc716ec0e",
                             Name = "Registered",
                             NormalizedName = "REGISTERED"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "aac5815f-10d9-456c-99b2-287661376c15",
+                            ConcurrencyStamp = "82422177-a242-4b2b-af34-f4f720896076",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

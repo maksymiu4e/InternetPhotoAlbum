@@ -1,9 +1,6 @@
 ﻿using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DAL.Configurations
 {
@@ -16,6 +13,8 @@ namespace DAL.Configurations
                 .HasKey(m => m.Id);
             builder
                 .HasOne(m => m.Photo).WithMany(x => x.Likes).HasForeignKey(x => x.PhotoId);
+            builder
+                .HasOne(m => m.User).WithMany(x => x.Likes).HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

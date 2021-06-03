@@ -22,8 +22,8 @@ namespace DAL.Configurations
                 .Property(m => m.Content).IsRequired();
             builder
                 .Property(m => m.Title).IsRequired();
-            builder
-                .HasMany(m => m.Likes).WithOne(x => x.Photo).HasForeignKey(x => x.PhotoId);
+            //builder
+            //    .HasMany(m => m.Likes).WithOne(x => x.Photo).HasForeignKey(x => x.PhotoId);
             builder
                 .HasOne(m => m.User).WithMany(x => x.Photos).HasForeignKey(x => x.UserId);
         }

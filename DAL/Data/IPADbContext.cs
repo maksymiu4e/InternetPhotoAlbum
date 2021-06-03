@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace DAL.Data
@@ -22,17 +23,27 @@ namespace DAL.Data
             // Database.EnsureCreated();
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(builder);
 
-            modelBuilder.ApplyConfiguration(new PhotoConfiguration());
+            //foreach (var foreingKey in builder.Model.GetEntityTypes()
+            //    .SelectMany(e => e.GetForeignKeys()))
+            //{
+            //    foreingKey.DeleteBehavior = DeleteBehavior.Restrict;
+            //}
+            //builder.Entity<User>()
+            //    .HasMany(p => p.Photos)
+            //    .WithMany(p => p.Likes).Using
 
-            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new PhotoConfiguration());
 
-            modelBuilder.ApplyConfiguration(new LikeConfiguration());
+            builder.ApplyConfiguration(new UserConfiguration());
 
-            modelBuilder.Seed();
+            builder.ApplyConfiguration(new LikeConfiguration());
+
+
+            builder.Seed();
         }
     }
 }

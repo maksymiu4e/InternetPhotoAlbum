@@ -14,11 +14,6 @@ namespace DAL.Repositories
         { 
         }
 
-        //private IPADbContext IPADbContext
-        //{
-        //    get { return _context as IPADbContext; }
-        //}
-
         public IEnumerable<Like> GetAllLikesByPhotoId(int id)
         {
             return _context.Likes.Where(x => x.PhotoId == id).ToList();
@@ -26,7 +21,7 @@ namespace DAL.Repositories
 
         public IEnumerable<Like> GetAllLikesByUserId(int id)
         {
-            return _context.Likes.Where(x => x.Photo.UserId == id).ToList();
+            return _context.Likes.Where(x => x.UserId == id).ToList();
         }
 
         public async Task<Like> GetByIdWithDetailsAsync(int id)

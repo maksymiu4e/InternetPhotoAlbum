@@ -3,6 +3,7 @@ using BLL.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -13,12 +14,10 @@ namespace InternetPhotoAlbum.Controllers
     public class LikeController : ControllerBase
     {
         private readonly ILikeService _likeService;
-        private readonly IPhotoService _photoService;
 
-        public LikeController(ILikeService likeService, IPhotoService photoService)
+        public LikeController(ILikeService likeService)
         {
             _likeService = likeService ?? throw new ArgumentNullException(nameof(likeService));
-            _photoService = photoService ?? throw new ArgumentNullException(nameof(photoService));
         }
 
         [HttpGet]
@@ -78,14 +77,23 @@ namespace InternetPhotoAlbum.Controllers
         [Route("[action]")]
         public async Task<IActionResult> CreateAsync(LikeModel model)
         {
-            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            
+            var appUser = HttpContext.User;
+            if (!appUser.Identity.IsAuthenticated)
+            {
+                return Forbid("Please, SignIn into your account.");
+            }
 
-            var photoM = await _photoService.GetByIdAsync(model.PhotoId);
-            
-            var uId = int.Parse(userId);
+            model.UserId = int.Parse(appUser.FindFirstValue(ClaimTypes.NameIdentifier));
 
-            var x = model.Photo.Title;
+            IEnumerable<LikeModel> userLikes = await _likeService.GetAllLikesByUserIdAsync(model.UserId);
+
+            List<LikeModel> likesPerPhoto = userLikes.Where(x => x.PhotoId == model.PhotoId).Select(x => x).ToList();
+
+            if (likesPerPhoto.Count > 0)
+            {
+                await _likeService.DeleteByIdAsync(likesPerPhoto.FirstOrDefault().Id);
+                return Ok();
+            }
 
             await _likeService.CreateAsync(model);
             return Ok(model);
