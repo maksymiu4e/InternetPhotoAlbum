@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
 using BLL.Interfaces;
-using BLL.Models;
 using BLL.Models.User;
 using DAL.Entities;
 using DAL.Interfaces;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using static BLL.Shared.Enums;
 

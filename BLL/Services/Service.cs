@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using BLL.Interfaces;
 using DAL.Interfaces;
-using Microsoft.AspNetCore.Http;
 
 namespace BLL.Services
 {
@@ -16,16 +13,11 @@ namespace BLL.Services
         protected readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<TEntity> _repository;
         private readonly IMapper _mapper;
-        public Service(IUnitOfWork unitOfWork, IRepository<TEntity> repository, IMapper mapper)
+        protected Service(IUnitOfWork unitOfWork, IRepository<TEntity> repository, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _repository = repository;
             _mapper = mapper;
-            //_mapper = new Mapper(new MapperConfiguration(cfg =>
-            //{
-            //    cfg.CreateMap<TEntity, TModel>().ReverseMap();
-            //}));
-
         }
         public async Task DeleteByIdAsync(int modelId)
         {

@@ -20,22 +20,12 @@ namespace DAL.Repositories
             await _entityDbSet.AddAsync(entity);
         }
 
-        //public void Delete(TEntity entity)
-        //{
-        //    _context.Set<TEntity>().Remove(entity);
-        //}
-
         public async Task DeleteByIdAsync(int id)
         {
             var entity = await GetByIdAsync(id);
             _entityDbSet.Remove(entity);
             await _context.SaveChangesAsync();
         }
-
-        //public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> expression)
-        //{
-        //    return _context.Set<TEntity>().Where(expression);
-        //}
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {

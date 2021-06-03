@@ -22,7 +22,7 @@ interface WeatherForecast {
   // summary: string;
   id: number;
   userId: number;
-  content: [];
+  content: Blob;
   title: string;
   creationDate: Date;
 }

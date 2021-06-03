@@ -65,7 +65,6 @@ namespace InternetPhotoAlbum.Controllers
                 return NotFound();
             }
 
-            //photoToChange.Title = model.Title;
             await _photoService.UpdateAsync(photoToChange);
             return Ok(model);
         }
@@ -86,19 +85,6 @@ namespace InternetPhotoAlbum.Controllers
             var result = _photoService.GetAllPhotosByUserId(id);
             return Ok(result);
         }
-
-        //[HttpPost]
-        //[Route("[action]")]
-        //public async Task<IActionResult> CreateAsync(PhotoModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    await _photoService.CreateAsync(model);
-        //    return Ok(model);
-        //}
 
         [HttpPost]
         [Route("[action]")]

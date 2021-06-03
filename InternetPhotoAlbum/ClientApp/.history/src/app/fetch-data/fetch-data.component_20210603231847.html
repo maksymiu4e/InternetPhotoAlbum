@@ -17,8 +17,8 @@
     <tr *ngFor="let forecast of forecasts">
       <td>{{ forecast.id }}</td>
       <td>{{ forecast.userId }}</td>
-      <td><img src="data:image/jpeg;base64,{{ forecast.content }}" width="100" height="100"></td>
-      <td>{{ forecast.creationDate | date }}</td>
+      <td>{{ forecast.content }}</td>
+      <td>{{ forecast.creationDate }}</td>
     </tr>
   </tbody>
 </table>

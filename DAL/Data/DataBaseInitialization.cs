@@ -1,14 +1,11 @@
 ﻿using DAL.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using static Shared.Shared.Enums;
 
 namespace DAL.Data
 {
-    public static class DataBaseInitialization /*: DropCreateDatabaseAlways<IPADbContext>*/
+    public static class DataBaseInitialization 
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
