@@ -1,0 +1,7 @@
+<p>sign-in works!</p>
+<form [formGroup]="formGroup" (ngSubmit)="getValues(formGroup.value)">
+    <div>Email</div>
+    <input matInput formControlName="email" type="text">
+    <div>Password</div>
+    <input matInput formControlName="password" type="text">
+</form>

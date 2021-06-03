@@ -1,0 +1,7 @@
+<p>sign-in works!</p>
+<form (ngSubmit)="getValues(simpleForm.value)">
+    <div>Email</div>
+    <input ngModel name="email" type="text">
+    <div>Password</div>
+    <input formControlName="password" type="text">
+</form>

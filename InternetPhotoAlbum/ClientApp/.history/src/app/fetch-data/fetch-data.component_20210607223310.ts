@@ -1,0 +1,33 @@
+import { Component, Inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { getBaseUrl } from 'src/main';
+
+@Component({
+  selector: 'app-fetch-data',
+  templateUrl: './fetch-data.component.html'
+})
+export class FetchDataComponent {
+  public forecasts: WeatherForecast[];
+
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    http.get<WeatherForecast[]>(baseUrl + 'photo').subscribe(result => {
+      this.forecasts = result;
+    }, error => console.error(error));
+  }
+
+  test(){
+    getBaseUrl();
+  }
+}
+
+interface WeatherForecast {
+  // date: string;
+  // temperatureC: number;
+  // temperatureF: number;
+  // summary: string;
+  id: number;
+  userId: number;
+  content: [];
+  title: string;
+  creationDate: Date;
+}

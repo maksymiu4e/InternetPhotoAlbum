@@ -1,9 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DAL.Entities
+﻿namespace DAL.Entities
 {
     public class Like 
     {

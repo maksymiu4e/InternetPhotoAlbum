@@ -30,7 +30,6 @@ namespace InternetPhotoAlbum
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddControllers();
             services.AddControllersWithViews();
 
             services.AddDbContext<IPADbContext>(options =>
@@ -39,13 +38,6 @@ namespace InternetPhotoAlbum
             services.AddIdentity<User, IdentityRole<int>>()
                 .AddEntityFrameworkStores<IPADbContext>()
                 .AddDefaultTokenProviders();
-
-            //services.AddDefaultIdentity<User>()
-            //    .AddRoles<IdentityRole<int>>()
-            //    .AddEntityFrameworkStores<IPADbContext>();
-
-            //services.AddIdentityServer()
-            //    .AddApiAuthorization<User, IPADbContext>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ILikeRepository, LikeRepository>();
@@ -64,29 +56,12 @@ namespace InternetPhotoAlbum
             services.AddAuthentication()
                .AddIdentityServerJwt();
 
-            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            //    .AddJwtBearer(options =>
-            //    {
-            //        options.TokenValidationParameters = new TokenValidationParameters
-            //        {
-            //            ValidIssuer = "https://localhost:44328",
-            //            ValidAudience = "https://localhost:44328",
-            //            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SecretKey")),
-            //        };
-            //    });
-
             services.AddRazorPages();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-
-            //services.AddAuthorization(options =>
-            //{
-            //    options.AddPolicy("RequireAdministratorRole",
-            //        policy => policy.RequireRole(UserRole.Admin.ToString()));
-            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,7 +71,6 @@ namespace InternetPhotoAlbum
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //app.UseDatabaseErrorPage();
             }
             else
             {
@@ -114,7 +88,6 @@ namespace InternetPhotoAlbum
 
             app.UseRouting();
 
-            //app.UseIdentityServer();
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -125,7 +98,6 @@ namespace InternetPhotoAlbum
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
-                //endpoints.MapRazorPages();
             });
 
             app.UseSpa(spa =>

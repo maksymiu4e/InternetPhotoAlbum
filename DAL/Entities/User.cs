@@ -5,11 +5,6 @@ namespace DAL.Entities
 {
     public class User : IdentityUser<int>
     {
-        //public User()
-        //{
-        //    Photos = new List<Photo>();
-        //    Likes = new List<Like>();
-        //}
         public override int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

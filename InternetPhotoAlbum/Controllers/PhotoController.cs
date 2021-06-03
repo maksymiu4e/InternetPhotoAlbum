@@ -1,5 +1,7 @@
-﻿using BLL.Interfaces;
-using BLL.Models.Photo;
+﻿using AutoMapper;
+using BLL.Interfaces;
+using InternetPhotoAlbum.ViewModels.Photo;
+using BLL.Models ;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,10 +19,15 @@ namespace InternetPhotoAlbum.Controllers
     public class PhotoController : ControllerBase
     {
         private readonly IPhotoService _photoService;
+        private readonly IMapper _mapper;
 
         public PhotoController(IPhotoService photoService)
         {
             _photoService = photoService ?? throw new ArgumentNullException(nameof(photoService));
+            _mapper = new Mapper(new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<UpdatePhotoRequest, PhotoModel>().ReverseMap();
+            }));
         }
 
         [HttpGet]
@@ -57,15 +64,15 @@ namespace InternetPhotoAlbum.Controllers
 
         [HttpPatch]
         //[Route("[action]")]
-        public async Task<IActionResult> UpdateAsync(UpdatePhotoRequest model)
+        public async Task<IActionResult> UpdateAsync(UpdatePhotoRequest updatePhoto)
         {
+            var model = _mapper.Map<UpdatePhotoRequest, PhotoModel>(updatePhoto);
             var photoToChange = await _photoService.GetByIdAsync(model.Id);
             if (photoToChange is null)
             {
                 return NotFound();
             }
 
-            //photoToChange.Title = model.Title;
             await _photoService.UpdateAsync(photoToChange);
             return Ok(model);
         }
@@ -86,19 +93,6 @@ namespace InternetPhotoAlbum.Controllers
             var result = _photoService.GetAllPhotosByUserId(id);
             return Ok(result);
         }
-
-        //[HttpPost]
-        //[Route("[action]")]
-        //public async Task<IActionResult> CreateAsync(PhotoModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    await _photoService.CreateAsync(model);
-        //    return Ok(model);
-        //}
 
         [HttpPost]
         [Route("[action]")]

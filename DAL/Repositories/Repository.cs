@@ -1,6 +1,7 @@
 ﻿using DAL.Data;
 using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -12,6 +13,8 @@ namespace DAL.Repositories
         protected DbSet<TEntity> _entityDbSet;
         protected Repository(IPADbContext context)
         {
+            if (context == null)
+                throw new ArgumentNullException(nameof(context));
             _context = context;
             _entityDbSet = context.Set<TEntity>();
         }
@@ -20,22 +23,12 @@ namespace DAL.Repositories
             await _entityDbSet.AddAsync(entity);
         }
 
-        //public void Delete(TEntity entity)
-        //{
-        //    _context.Set<TEntity>().Remove(entity);
-        //}
-
         public async Task DeleteByIdAsync(int id)
         {
             var entity = await GetByIdAsync(id);
             _entityDbSet.Remove(entity);
             await _context.SaveChangesAsync();
         }
-
-        //public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> expression)
-        //{
-        //    return _context.Set<TEntity>().Where(expression);
-        //}
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
@@ -52,15 +45,20 @@ namespace DAL.Repositories
             return entity;
         }
 
-        public async Task<TEntity> UpdateAsync(TEntity entity)
+        public async Task UpdateAsync(TEntity entity)
         {
+            if (entity == null)
+                throw new ArgumentNullException(nameof(entity));
+
             _context.Entry(entity).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-            return entity;
         }
 
         public async Task<TEntity> CreateAsync(TEntity entity)
         {
+            if(entity == null)
+                throw new ArgumentNullException(nameof(entity));
+
             await _entityDbSet.AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity;

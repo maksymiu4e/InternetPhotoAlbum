@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
 using BLL.Interfaces;
 using BLL.Models;
-using BLL.Models.User;
 using DAL.Entities;
 using DAL.Interfaces;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using static BLL.Shared.Enums;
 
@@ -29,36 +25,36 @@ namespace BLL.Services
         }
 
 
-        public async Task<SignUpModel> SignUpAsync(SignUpModel signUpModel)
+        public async Task<UserModel> SignUpAsync(UserModel userModel)
         {
-            User user = _mapper.Map<SignUpModel, User>(signUpModel);
-            user.UserName = signUpModel.Email;
+            User user = _mapper.Map<UserModel, User>(userModel);
+            user.UserName = userModel.Email;
 
-            IdentityResult result = await _userManager.CreateAsync(user, signUpModel.Password);
+            IdentityResult result = await _userManager.CreateAsync(user, userModel.Password);
             if (!result.Succeeded)
             {
                 int errorCount = 1;
                 result.Errors.ToList().ForEach(item =>
                 {
-                    signUpModel.Errors.Add($"Error {errorCount++} - {item.Description}");
+                    userModel.Errors.Add($"Error {errorCount++} - {item.Description}");
                 });
-                return signUpModel;
+                return userModel;
             }
 
             await _userManager.AddToRoleAsync(user, UserRole.Registered.ToString());
 
-            return signUpModel;
+            return userModel;
         }
 
-        public async Task<SignInResult> SignInAsync(SignInModel signInModel)
+        public async Task<SignInResult> SignInAsync(UserModel userModel)
         {
-            User user = await _userManager.FindByEmailAsync(signInModel.Email);
+            User user = await _userManager.FindByEmailAsync(userModel.Email);
 
             if (user is null)
             {
                 return SignInResult.Failed;
             }
-            return await _signInManager.PasswordSignInAsync(user, signInModel.Password, isPersistent: false, lockoutOnFailure: false);
+            return await _signInManager.PasswordSignInAsync(user, userModel.Password, isPersistent: false, lockoutOnFailure: false);
             
         }
 

@@ -7,10 +7,8 @@ namespace DAL.Interfaces
     {
         Task<IEnumerable<TEntity>> GetAllAsync();
         Task<TEntity> GetByIdAsync(int id);
-        //IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> expression);
         Task AddAsync(TEntity entity);
-        Task<TEntity> UpdateAsync(TEntity entity);
-        //void Delete(TEntity entity);
+        Task UpdateAsync(TEntity entity);
         Task DeleteByIdAsync(int id);
         Task<TEntity> CreateAsync(TEntity entity);
     }
