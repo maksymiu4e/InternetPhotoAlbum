@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using BLL.Interfaces;
+﻿using BLL.Interfaces;
 using BLL.Models;
 using InternetPhotoAlbum.ViewModels.User;
 using Microsoft.AspNetCore.Authorization;
