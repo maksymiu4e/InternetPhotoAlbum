@@ -28,9 +28,10 @@ namespace DAL.Repositories
             _dbContext.Dispose();
         }
 
-        public async Task<int> SaveAsync()
+        ///<inheritdoc/>
+        public async Task SaveAsync()
         {
-            return await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
         }
 
     }

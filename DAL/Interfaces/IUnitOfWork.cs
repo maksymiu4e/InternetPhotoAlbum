@@ -8,6 +8,11 @@ namespace DAL.Interfaces
         IUserRepository UserRepository { get; }
         IPhotoRepository PhotoRepository { get; }
         ILikeRepository LikeRepository { get; }
-        Task<int> SaveAsync();
+
+        /// <summary>
+        /// Save entity to DB
+        /// </summary>
+        /// <returns></returns>
+        Task SaveAsync();
     }
 }

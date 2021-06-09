@@ -1,0 +1,24 @@
+<h1 id="tableLabel">Photos</h1>
+
+<p *ngIf="!photos"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="photos">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>userId</th>
+      <th>content</th>
+      <th>creationDate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let photo of photos">
+      <td>{{ photo.id }}</td>
+      <td>{{ photo.userId }}</td>
+      <a routerLink="photo-detail/{photo.id}">
+        <td><img src="data:image/jpeg;base64,{{ photo.content }}" width="100" height="100"></td>
+      </a>
+        <td>{{ photo.creationDate | date }}</td>
+    </tr>
+  </tbody>
+</table>

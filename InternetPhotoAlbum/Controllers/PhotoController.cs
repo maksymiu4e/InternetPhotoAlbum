@@ -28,7 +28,6 @@ namespace InternetPhotoAlbum.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = nameof(UserRole.Admin))]
         //[Authorize]
         //[Authorize(Policy = "RequireAdministratorRole")]
         public async Task<ActionResult<List<PhotoModel>>> GetAll()

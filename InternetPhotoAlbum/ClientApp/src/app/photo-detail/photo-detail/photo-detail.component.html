@@ -1,0 +1,10 @@
+<p>Photo Detail!</p>
+<p *ngIf="!photo"><em>Loading...</em></p>
+
+<div>
+    <h2>Title: {{photo.title | uppercase}}</h2>
+    <img src="data:image/jpeg;base64,{{ photo.content }}" width="300" height="300">
+    <h3>Id: {{ photo.id }}</h3>
+    <h3>User Id: {{ photo.userId }}</h3>
+    <h3>Creation Date: {{ photo.creationDate | date }}</h3>
+</div>

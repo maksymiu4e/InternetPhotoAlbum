@@ -24,7 +24,7 @@ namespace BLL.Services
             _signInManager = signInManager;
         }
 
-
+        ///<inheritdoc/>
         public async Task<UserModel> SignUpAsync(UserModel userModel)
         {
             User user = _mapper.Map<UserModel, User>(userModel);
@@ -46,6 +46,7 @@ namespace BLL.Services
             return userModel;
         }
 
+        ///<inheritdoc/>
         public async Task<SignInResult> SignInAsync(UserModel userModel)
         {
             User user = await _userManager.FindByEmailAsync(userModel.Email);
@@ -58,6 +59,7 @@ namespace BLL.Services
 
         }
 
+        ///<inheritdoc/>
         public async Task SignOut()
         {
             await _signInManager.SignOutAsync();

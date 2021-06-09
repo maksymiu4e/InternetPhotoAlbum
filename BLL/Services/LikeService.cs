@@ -19,12 +19,14 @@ namespace BLL.Services
             _mapper = mapper;
         }
 
+        ///<inheritdoc/>
         public async Task<IEnumerable<LikeModel>> GetAllLikesByPhotoIdAsync(int id)
         {
             var photoLikes = _likeRepository.GetAllLikesByPhotoId(id);
             return _mapper.Map<IEnumerable<Like>, IEnumerable<LikeModel>>(photoLikes);
         }
 
+        ///<inheritdoc/>
         public async Task<IEnumerable<LikeModel>> GetAllLikesByUserIdAsync(int id)
         {
             var userLikes = _likeRepository.GetAllLikesByUserId(id);

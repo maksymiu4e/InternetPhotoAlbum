@@ -13,11 +13,13 @@ namespace DAL.Repositories
         {
         }
 
+        ///<inheritdoc/>
         public IEnumerable<Photo> GetAllPhotosByCreationDate(DateTime date)
         {
             return _context.Photos.Where(x => x.CreationDate.Date == date.Date).ToList();
         }
 
+        ///<inheritdoc/>
         public IEnumerable<Photo> GetAllPhotosByUserId(int id)
         {
             return _context.Photos.Where(x => x.UserId == id).ToList();

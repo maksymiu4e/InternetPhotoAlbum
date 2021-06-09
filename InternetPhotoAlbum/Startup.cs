@@ -55,8 +55,6 @@ namespace InternetPhotoAlbum
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
 
-            //services.AddAuthentication()
-            //.AddIdentityServerJwt();
             services.AddAuthentication(options =>
             {
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;

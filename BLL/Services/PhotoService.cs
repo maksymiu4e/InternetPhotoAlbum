@@ -22,12 +22,14 @@ namespace BLL.Services
             _mapper = mapper;
         }
 
+        ///<inheritdoc/>
         public IEnumerable<PhotoModel> GetAllPhotosByCreationDate(DateTime date)
         {
             var photosByDate = _photoRepository.GetAllPhotosByCreationDate(date);
             return _mapper.Map<IEnumerable<Photo>, IEnumerable<PhotoModel>>(photosByDate);
         }
 
+        ///<inheritdoc/>
         public IEnumerable<PhotoModel> GetAllPhotosByUserId(int id)
         {
             var photosByUser = _photoRepository.GetAllPhotosByUserId(id);
@@ -57,18 +59,6 @@ namespace BLL.Services
             }
 
             return "Photo created successfully";
-        }
-
-        public byte[] Memory(IFormFile file)
-        {
-            byte[] bytes = null;
-            using (Stream img = file.OpenReadStream())
-            using (MemoryStream memmoryStream = new MemoryStream())
-            {
-                img.CopyTo(memmoryStream);
-                bytes = memmoryStream.ToArray();
-            }
-            return bytes;
         }
     }
 }

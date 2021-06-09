@@ -20,16 +20,20 @@ namespace BLL.Services
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _mapper = mapper;
         }
+
+        ///<inheritdoc/>
         public async Task DeleteByIdAsync(int modelId)
         {
             await _repository.DeleteByIdAsync(modelId);
         }
 
+        ///<inheritdoc/>
         public async Task<IEnumerable<TModel>> GetAllAsync()
         {
             return _mapper.Map<IEnumerable<TEntity>, IEnumerable<TModel>>(await _repository.GetAllAsync());
         }
 
+        ///<inheritdoc/>
         public async Task<TModel> GetByIdAsync(int id)
         {
             var entity = await _repository.GetByIdAsync(id);
@@ -40,12 +44,14 @@ namespace BLL.Services
             return _mapper.Map<TModel>(entity);
         }
 
+        ///<inheritdoc/>
         public async Task UpdateAsync(TModel model)
         {
             var entity = _mapper.Map<TEntity>(model);
             await _repository.UpdateAsync(entity);
         }
 
+        ///<inheritdoc/>
         public async Task CreateAsync(TModel model)
         {
             var entity = _mapper.Map<TEntity>(model);

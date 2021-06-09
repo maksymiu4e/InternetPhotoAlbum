@@ -1,0 +1,7 @@
+<p>Photo Detail!</p>
+<p *ngIf="!photo"><em>Loading...</em></p>
+
+<div>
+    <h2>Title: {{photo.title | uppercase}}</h2>
+    <img src="data:image/jpeg;base64,{{ photo.content }}" width="300" height="300">
+</div>
