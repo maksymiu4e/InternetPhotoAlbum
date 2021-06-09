@@ -55,7 +55,7 @@ namespace BLL.Services
                 return SignInResult.Failed;
             }
             return await _signInManager.PasswordSignInAsync(user, userModel.Password, isPersistent: false, lockoutOnFailure: false);
-            
+
         }
 
         public async Task SignOut()

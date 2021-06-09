@@ -28,7 +28,7 @@ namespace BLL.Services
         public async Task<IEnumerable<LikeModel>> GetAllLikesByUserIdAsync(int id)
         {
             var userLikes = _likeRepository.GetAllLikesByUserId(id);
-            return  _mapper.Map<IEnumerable<Like>, IEnumerable<LikeModel>>(userLikes);
+            return _mapper.Map<IEnumerable<Like>, IEnumerable<LikeModel>>(userLikes);
         }
     }
 }

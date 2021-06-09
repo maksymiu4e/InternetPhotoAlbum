@@ -1,17 +1,16 @@
-﻿using AutoMapper;
-using BLL.Interfaces;
-using InternetPhotoAlbum.ViewModels.Photo;
+﻿using BLL.Interfaces;
 using BLL.Models;
+using InternetPhotoAlbum.ViewModels.Photo;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
-using System.Security.Claims;
-using static BLL.Shared.Enums;
 using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using static BLL.Shared.Enums;
 
 namespace InternetPhotoAlbum.Controllers
 {

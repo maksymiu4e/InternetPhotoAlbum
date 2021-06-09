@@ -42,7 +42,7 @@ namespace BLL.Services
                 UserId = model.UserId,
                 Title = model.Title,
                 CreationDate = DateTime.Now
-                
+
             };
 
             try

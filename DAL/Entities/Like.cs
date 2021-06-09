@@ -1,6 +1,6 @@
 ﻿namespace DAL.Entities
 {
-    public class Like 
+    public class Like
     {
         public int Id { get; set; }
 

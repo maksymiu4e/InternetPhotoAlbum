@@ -5,7 +5,7 @@ using static Shared.Shared.Enums;
 
 namespace DAL.Data
 {
-    public static class DataBaseInitialization 
+    public static class DataBaseInitialization
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {

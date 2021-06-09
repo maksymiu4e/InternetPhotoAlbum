@@ -9,7 +9,7 @@ namespace BLL.Interfaces
     {
         IEnumerable<PhotoModel> GetAllPhotosByUserId(int id);
         IEnumerable<PhotoModel> GetAllPhotosByCreationDate(DateTime date);
-        
+
         /// <summary>
         /// Posts new photo.
         /// </summary>

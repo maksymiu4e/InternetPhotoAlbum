@@ -28,9 +28,5 @@
     <ProjectReference Include="..\BLL\BLL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModels\Like\" />
-  </ItemGroup>
-
 
 </Project>

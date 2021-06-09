@@ -10,8 +10,8 @@ namespace DAL.Repositories
 {
     public class LikeRepository : Repository<Like>, ILikeRepository
     {
-        public LikeRepository(IPADbContext context) : base (context)
-        { 
+        public LikeRepository(IPADbContext context) : base(context)
+        {
         }
 
         public IEnumerable<Like> GetAllLikesByPhotoId(int id)
