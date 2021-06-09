@@ -1,5 +1,6 @@
 ﻿using BLL.Interfaces;
 using BLL.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -93,17 +94,28 @@ namespace InternetPhotoAlbum.Controllers
             return Ok(model);
         }
 
+        [Authorize]
         [HttpPost]
-        [Route("[action]")]
-        public async Task<IActionResult> CreateAsync(LikeModel model)
+        [Route("[action]/{photoId}")]
+        public async Task<IActionResult> CreateAsync(int photoId)
         {
+            var res = await _photoService.GetByIdAsync(photoId);
+            if (res is null)
+            {
+                return NotFound();
+            }
+
             var appUser = HttpContext.User;
             if (!appUser.Identity.IsAuthenticated)
             {
                 return Forbid("Please, SignIn into your account.");
             }
 
-            model.UserId = int.Parse(appUser.FindFirstValue(ClaimTypes.NameIdentifier));
+            LikeModel model = new LikeModel
+            {
+                UserId = int.Parse(appUser.FindFirstValue(ClaimTypes.NameIdentifier)),
+                PhotoId = photoId
+            };
 
             IEnumerable<LikeModel> userLikes = await _likeService.GetAllLikesByUserIdAsync(model.UserId);
 
@@ -112,11 +124,11 @@ namespace InternetPhotoAlbum.Controllers
             if (likesPerPhoto.Count > 0)
             {
                 await _likeService.DeleteByIdAsync(likesPerPhoto.FirstOrDefault().Id);
-                return Ok();
+                return Ok("Like deleted");
             }
 
             await _likeService.CreateAsync(model);
-            return Ok(model);
+            return Ok("Like added");
         }
     }
 }

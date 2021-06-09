@@ -11,6 +11,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using static BLL.Shared.Enums;
+using System.Linq;
 
 namespace InternetPhotoAlbum.Controllers
 {
@@ -21,15 +22,10 @@ namespace InternetPhotoAlbum.Controllers
     public class PhotoController : ControllerBase
     {
         private readonly IPhotoService _photoService;
-        private readonly IMapper _mapper;
 
         public PhotoController(IPhotoService photoService)
         {
             _photoService = photoService ?? throw new ArgumentNullException(nameof(photoService));
-            _mapper = new Mapper(new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<UpdatePhotoRequest, PhotoModel>().ReverseMap();
-            }));
         }
 
         [HttpGet]
@@ -69,19 +65,30 @@ namespace InternetPhotoAlbum.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpPatch]
         [Route("[action]")]
-        public async Task<IActionResult> UpdateAsync(UpdatePhotoRequest updatePhoto)
+        public async Task<IActionResult> Update(UpdatePhotoRequest updatePhoto)
         {
-            var model = _mapper.Map<UpdatePhotoRequest, PhotoModel>(updatePhoto);
-            var photoToChange = await _photoService.GetByIdAsync(model.Id);
+            var appUser = HttpContext.User;
+
+            int appUserId = int.Parse(appUser.FindFirstValue(ClaimTypes.NameIdentifier));
+            var photoToChange = await _photoService.GetByIdAsync(updatePhoto.Id);
             if (photoToChange is null)
             {
                 return NotFound();
             }
 
+            if ((photoToChange.UserId != appUserId) && !appUser.IsInRole(nameof(UserRole.Admin)))
+            {
+                return StatusCode(403, "You have to be owner or Admin");
+            }
+
+            photoToChange.Title = updatePhoto.Title;
+
+
             await _photoService.UpdateAsync(photoToChange);
-            return Ok(model);
+            return Ok(photoToChange);
         }
 
         [HttpGet]
@@ -107,8 +114,8 @@ namespace InternetPhotoAlbum.Controllers
         [Route("[action]/{id}")]
         public ActionResult<List<PhotoModel>> GetAllPhotosByUserId(int id)
         {
-            var result = _photoService.GetAllPhotosByUserId(id);
-            if (result is null)
+            List<PhotoModel> result = _photoService.GetAllPhotosByUserId(id).ToList();
+            if (result.Count == 0)
             {
                 return NotFound();
             }
