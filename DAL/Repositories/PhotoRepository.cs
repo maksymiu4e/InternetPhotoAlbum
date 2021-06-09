@@ -15,7 +15,7 @@ namespace DAL.Repositories
 
         public IEnumerable<Photo> GetAllPhotosByCreationDate(DateTime date)
         {
-            return _context.Photos.Where(x => x.CreationDate == date).ToList();
+            return _context.Photos.Where(x => x.CreationDate.Date == date.Date).ToList();
         }
 
         public IEnumerable<Photo> GetAllPhotosByUserId(int id)

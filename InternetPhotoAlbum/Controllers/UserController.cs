@@ -25,13 +25,6 @@ namespace InternetPhotoAlbum.Controllers
 
             _mapper = new Mapper(new MapperConfiguration(cfg =>
             {
-                //cfg.CreateMap<int, RoleViewModel>()
-                //.ForMember(role => role.Name, opt =>
-                //opt.MapFrom(id => _roleService.FindById(id).Name));
-
-                //cfg.CreateMap<UserDto, UserViewModel>().
-                //ForMember(x => x.Roles, opt => opt.MapFrom(x => x.RolesId));
-
                 cfg.CreateMap<SignUpViewModel, UserModel>().ReverseMap();
                 cfg.CreateMap<SignInViewModel, UserModel>().ReverseMap();
             }));
@@ -51,6 +44,10 @@ namespace InternetPhotoAlbum.Controllers
         public async Task<ActionResult<List<UserModel>>> GetByIdAsync(int id)
         {
             var result = await _userService.GetByIdAsync(id);
+            if (result is null)
+            {
+                return NotFound();
+            }
             return Ok(result);
         }
 
@@ -109,7 +106,12 @@ namespace InternetPhotoAlbum.Controllers
         [HttpPost("SignOut")]
         public async Task<IActionResult> SignOut()
         {
-           await _userService.SignOut();
+            var appUser = HttpContext.User;
+            if (!appUser.Identity.IsAuthenticated)
+            {
+                return Unauthorized();
+            }
+            await _userService.SignOut();
 
             return Ok();
         }

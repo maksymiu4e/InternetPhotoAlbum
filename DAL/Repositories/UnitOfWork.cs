@@ -14,9 +14,7 @@ namespace DAL.Repositories
 
         public UnitOfWork(IPADbContext dbContext)
         {
-            if (dbContext == null)
-                throw new ArgumentNullException(nameof(dbContext));
-            _dbContext = dbContext;
+            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
         public IUserRepository UserRepository => _userRepository = _userRepository ?? new UserRepository(_dbContext);

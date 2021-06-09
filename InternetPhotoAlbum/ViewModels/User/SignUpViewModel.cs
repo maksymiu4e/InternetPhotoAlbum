@@ -19,7 +19,7 @@ namespace InternetPhotoAlbum.ViewModels.User
         public string LastName { get; set; }
         [Required]
         [DataType(DataType.Password)]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {6} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         public string Password { get; set; }
 
         public ICollection<string> Errors { get; set; }

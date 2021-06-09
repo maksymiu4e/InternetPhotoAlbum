@@ -16,13 +16,8 @@ namespace BLL.Services
         private readonly IMapper _mapper;
         protected Service(IUnitOfWork unitOfWork, IRepository<TEntity> repository, IMapper mapper)
         {
-            if (unitOfWork == null)
-                throw new ArgumentNullException(nameof(unitOfWork));
-
-            if (repository == null)
-                throw new ArgumentNullException(nameof(repository));
-            _unitOfWork = unitOfWork;
-            _repository = repository;
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _mapper = mapper;
         }
         public async Task DeleteByIdAsync(int modelId)

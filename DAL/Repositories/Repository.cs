@@ -13,9 +13,7 @@ namespace DAL.Repositories
         protected DbSet<TEntity> _entityDbSet;
         protected Repository(IPADbContext context)
         {
-            if (context == null)
-                throw new ArgumentNullException(nameof(context));
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
             _entityDbSet = context.Set<TEntity>();
         }
         public async Task AddAsync(TEntity entity)
@@ -47,8 +45,8 @@ namespace DAL.Repositories
 
         public async Task UpdateAsync(TEntity entity)
         {
-            if (entity == null)
-                throw new ArgumentNullException(nameof(entity));
+            //if (entity == null)
+            //    throw new ArgumentNullException(nameof(entity));
 
             _context.Entry(entity).State = EntityState.Modified;
             await _context.SaveChangesAsync();
@@ -56,8 +54,8 @@ namespace DAL.Repositories
 
         public async Task<TEntity> CreateAsync(TEntity entity)
         {
-            if(entity == null)
-                throw new ArgumentNullException(nameof(entity));
+            //if(entity == null)
+            //    throw new ArgumentNullException(nameof(entity));
 
             await _entityDbSet.AddAsync(entity);
             await _context.SaveChangesAsync();

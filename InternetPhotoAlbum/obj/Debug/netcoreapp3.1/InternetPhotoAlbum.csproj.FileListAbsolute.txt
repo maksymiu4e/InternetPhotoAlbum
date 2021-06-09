@@ -171,3 +171,5 @@ C:\Users\User\source\repos\InternetPhotoAlbum2\InternetPhotoAlbum\obj\Debug\netc
 C:\Users\User\source\repos\InternetPhotoAlbum2\InternetPhotoAlbum\obj\Debug\netcoreapp3.1\InternetPhotoAlbum.dll
 C:\Users\User\source\repos\InternetPhotoAlbum2\InternetPhotoAlbum\obj\Debug\netcoreapp3.1\InternetPhotoAlbum.pdb
 C:\Users\User\source\repos\InternetPhotoAlbum2\InternetPhotoAlbum\obj\Debug\netcoreapp3.1\InternetPhotoAlbum.genruntimeconfig.cache
+C:\Users\User\source\repos\InternetPhotoAlbum2\InternetPhotoAlbum\bin\Debug\netcoreapp3.1\IdentityModel.AspNetCore.OAuth2Introspection.dll
+C:\Users\User\source\repos\InternetPhotoAlbum2\InternetPhotoAlbum\bin\Debug\netcoreapp3.1\IdentityServer4.AccessTokenValidation.dll

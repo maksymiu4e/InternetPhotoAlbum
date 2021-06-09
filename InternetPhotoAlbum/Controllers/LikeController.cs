@@ -14,10 +14,14 @@ namespace InternetPhotoAlbum.Controllers
     public class LikeController : ControllerBase
     {
         private readonly ILikeService _likeService;
+        private readonly IPhotoService _photoService;
+        private readonly IUserService _userService;
 
-        public LikeController(ILikeService likeService)
+        public LikeController(ILikeService likeService, IPhotoService photoService, IUserService userService)
         {
             _likeService = likeService ?? throw new ArgumentNullException(nameof(likeService));
+            _photoService = photoService ?? throw new ArgumentNullException(nameof(photoService));
+            _userService = userService ?? throw new ArgumentNullException(nameof(userService));
         }
 
         [HttpGet]
@@ -32,6 +36,10 @@ namespace InternetPhotoAlbum.Controllers
         public async Task<ActionResult<List<LikeModel>>> GetByIdAsync(int id)
         {
             var result = await _likeService.GetByIdAsync(id);
+            if (result is null)
+            {
+                return NotFound();
+            }
             return Ok(result);
         }
 
@@ -39,16 +47,28 @@ namespace InternetPhotoAlbum.Controllers
         [Route("[action]/{id}")]
         public async Task<ActionResult<List<LikeModel>>> GetAllLikesByPhotoId(int id)
         {
-            var result = await _likeService.GetAllLikesByPhotoIdAsync(id);
-            return Ok(result);
+            PhotoModel result = await _photoService.GetByIdAsync(id);
+            if (result is null)
+            {
+                return NotFound();
+            }
+
+            IEnumerable<LikeModel> likes = await _likeService.GetAllLikesByPhotoIdAsync(id);
+            return Ok(likes);
         }
 
         [HttpGet]
         [Route("[action]/{id}")]
         public async Task<ActionResult<List<LikeModel>>> GetAllLikesByUserId(int id)
         {
-            var result = await _likeService.GetAllLikesByUserIdAsync(id);
-            return Ok(result);
+            UserModel result = await _userService.GetByIdAsync(id);
+            if (result is null)
+            {
+                return NotFound();
+            }
+
+            IEnumerable<LikeModel> likes = await _likeService.GetAllLikesByUserIdAsync(id);
+            return Ok(likes);
         }
 
         [HttpDelete]
